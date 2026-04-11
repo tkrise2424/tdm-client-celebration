@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>TDM New Client Celebration Generator</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#41889a;--teal-dark:#2e6878;--teal-light:#5ba8bc;--teal-xl:#d4edf2;
+  --white:#fff;--g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;--g400:#94a3b8;
+  --g600:#475569;--g800:#1e293b;--gold:#c9a84c;
+}
+body{font-family:"Inter",sans-serif;background:var(--g50);color:var(--g800);min-height:100vh}
+header{background:#fff;border-bottom:3px solid var(--teal);padding:18px 40px;display:flex;align-items:center;gap:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+header img{height:44px}
+.hdiv{width:1px;height:36px;background:var(--g200)}
+.htag{font-size:13px;color:var(--g600);font-weight:500}
+header h1{font-size:18px;font-weight:700;color:var(--teal-dark)}
+.hero{background:linear-gradient(135deg,var(--teal-dark),var(--teal) 60%,var(--teal-light));padding:36px 40px;color:#fff;text-align:center}
+.hero h2{font-size:28px;font-weight:900;margin-bottom:8px}
+.hero p{font-size:15px;opacity:.88;max-width:520px;margin:0 auto}
+.steps{display:flex;justify-content:center;background:#fff;border-bottom:1px solid var(--g200);overflow-x:auto;padding:0 20px}
+.step{display:flex;align-items:center;gap:8px;padding:14px 20px;font-size:12px;font-weight:600;color:var(--teal);white-space:nowrap}
+.step .num{width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.sarr{color:var(--g400);padding:0 4px;line-height:48px}
+.main{display:grid;grid-template-columns:420px 1fr;gap:32px;max-width:1200px;margin:32px auto;padding:0 24px}
+.fp{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.07);overflow:hidden}
+.fph{background:var(--teal);padding:18px 24px;color:#fff;font-weight:700;font-size:15px}
+.fb{padding:24px;display:flex;flex-direction:column;gap:20px}
+.fg label{display:block;font-size:12px;font-weight:700;color:var(--g600);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.fg input{width:100%;padding:11px 14px;border:1.5px solid var(--g200);border-radius:8px;font-family:"Inter",sans-serif;font-size:14px;color:var(--g800);transition:border-color .2s;background:var(--g50)}
+.fg input:focus{outline:none;border-color:var(--teal);background:#fff}
+.uz{border:2px dashed var(--g200);border-radius:10px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;background:var(--g50);position:relative;overflow:hidden}
+.uz:hover{border-color:var(--teal);background:var(--teal-xl)}
+.uz.has{border-style:solid;border-color:var(--teal);background:var(--teal-xl)}
+.uz input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.uz .icon{font-size:28px;margin-bottom:6px}
+.uz .lbl{font-size:13px;font-weight:600;color:var(--g600)}
+.uz .hint{font-size:11px;color:var(--g400);margin-top:3px}
+.uz .pimg{width:80px;height:80px;border-radius:8px;object-fit:cover;margin:0 auto 8px;display:block;border:2px solid var(--teal)}
+.sdiv{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal)}
+.sdiv::before,.sdiv::after{content:"";flex:1;height:1px;background:var(--teal-xl)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:8px;font-family:"Inter",sans-serif;font-size:14px;font-weight:700;cursor:pointer;border:none;transition:all .2s;width:100%}
+.bp{background:var(--teal);color:#fff}
+.bp:hover{background:var(--teal-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(65,136,154,.35)}
+.bli{background:#0077B5;color:#fff}
+.bli:hover{background:#005f8e;transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,119,181,.35)}
+.bcopy{background:var(--g100);color:var(--g600);font-size:12px;padding:7px 14px;border-radius:6px;cursor:pointer;border:none;font-family:"Inter",sans-serif;font-weight:700;width:auto}
+.bcopy:hover{background:var(--g200)}
+.cbox{background:var(--g50);border:1.5px solid var(--g200);border-radius:10px;padding:14px}
+.cbh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.cbh span{font-size:12px;font-weight:700;color:var(--g600);text-transform:uppercase;letter-spacing:.06em}
+#captionText{font-size:13px;line-height:1.65;color:var(--g800);white-space:pre-wrap}
+.pp{display:flex;flex-direction:column;gap:20px}
+.pc{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.07);overflow:hidden}
+.pch{background:var(--teal);padding:14px 20px;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:space-between}
+.pch .badge{background:rgba(255,255,255,.2);padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.cw{padding:24px;display:flex;justify-content:center;background:var(--g100)}
+#previewCanvas{border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.15);max-width:100%}
+@media(max-width:900px){.main{grid-template-columns:1fr}header{padding:14px 20px}.hero{padding:24px 20px}}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--teal-dark);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.2);opacity:0;transform:translateY(10px);transition:all .3s;z-index:1000}
+.toast.show{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+<header>
+  <img src="https://web.parallellabs.app/platform-images/p/a19ba6a3-6c51-4133-bc4b-4727b76616df" alt="TDM" onerror="this.style.display='none'"/>
+  <div class="hdiv"></div>
+  <div><h1>New Client Celebration</h1><div class="htag">Share your win on LinkedIn</div></div>
+</header>
+
+<div class="hero">
+  <h2>&#127881; Celebrate Your New Partnership!</h2>
+  <p>Create a branded graphic to announce your new client and share it with your network.</p>
+</div>
+
+<div class="steps">
+  <div class="step"><span class="num">1</span>&nbsp;Upload Logos</div><div class="sarr">&#8250;</div>
+  <div class="step"><span class="num">2</span>&nbsp;Enter Details</div><div class="sarr">&#8250;</div>
+  <div class="step"><span class="num">3</span>&nbsp;Preview Graphic</div><div class="sarr">&#8250;</div>
+  <div class="step"><span class="num">4</span>&nbsp;Download &amp; Share</div>
+</div>
+
+<div class="main">
+  <!-- FORM -->
+  <div class="fp">
+    <div class="fph">&#9999;&#65039; Customize Your Graphic</div>
+    <div class="fb">
+      <div class="sdiv">Logos</div>
+
+      <div class="fg">
+        <label>Your Photo (Sales Rep)</label>
+        <div class="uz" id="repZone">
+          <input type="file" accept="image/*" onchange="handleUpload(this,'rep')"/>
+          <div class="icon">&#129333;</div>
+          <div class="lbl">Click to upload your headshot</div>
+          <div class="hint">Recommended: Square, high-res</div>
+        </div>
+      </div>
+
+      <div class="fg">
+        <label>Client Logo or Photo</label>
+        <div class="uz" id="clientZone">
+          <input type="file" accept="image/*" onchange="handleUpload(this,'client')"/>
+          <div class="icon">&#127970;</div>
+          <div class="lbl">Click to upload client logo or photo</div>
+          <div class="hint">PNG with transparency works great</div>
+        </div>
+      </div>
+
+      <div class="sdiv">Your Details</div>
+      <div class="fg"><label>Your Full Name</label><input type="text" id="repName" placeholder="e.g. Sarah Johnson" oninput="updatePreview()"/></div>
+      <div class="fg"><label>Your Title</label><input type="text" id="repTitle" placeholder="e.g. Account Executive" oninput="updatePreview()"/></div>
+
+      <div class="sdiv">Client Details</div>
+      <div class="fg"><label>Client Company Name</label><input type="text" id="clientName" placeholder="e.g. Acme Corporation" oninput="updatePreview()"/></div>
+
+      <div class="sdiv">Actions</div>
+      <button class="btn bp" onclick="downloadGraphic()">&#11015;&#65039; Download Graphic (1200&times;1200)</button>
+
+      <div class="cbox">
+        <div class="cbh">
+          <span>LinkedIn Caption</span>
+          <button class="bcopy" onclick="copyCaption()">Copy Text</button>
+        </div>
+        <div id="captionText"></div>
+      </div>
+
+      <button class="btn bli" onclick="postToLinkedIn()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        Post on LinkedIn
+      </button>
+    </div>
+  </div>
+
+  <!-- PREVIEW -->
+  <div class="pp">
+    <div class="pc">
+      <div class="pch">Live Preview <span class="badge">1200 &times; 1200 px</span></div>
+      <div class="cw"><canvas id="previewCanvas" width="600" height="600"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<canvas id="exportCanvas" width="1200" height="1200" style="display:none"></canvas>
+<script>
+const T="#41889a",TD="#2e6878",TL="#5ba8bc",W="#fff",G="#c9a84c",DK="#1e293b";
+let rImg=null,cImg=null,logo=null;
+
+// Pre-load TDM logo
+const logoEl=new Image();
+logoEl.crossOrigin="anonymous";
+logoEl.onload=()=>{logo=logoEl;draw(document.getElementById("previewCanvas"))};
+logoEl.onerror=()=>{draw(document.getElementById("previewCanvas"))};
+logoEl.src="https://web.parallellabs.app/platform-images/p/a19ba6a3-6c51-4133-bc4b-4727b76616df";
+
+function handleUpload(inp,type){
+  const f=inp.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=e=>{
+    const i=new Image();
+    i.onload=()=>{
+      if(type==="rep"){rImg=i;showThumb("repZone",e.target.result,"rep")}
+      else{cImg=i;showThumb("clientZone",e.target.result,"client")}
+      updatePreview();
+    };
+    i.src=e.target.result;
+  };
+  r.readAsDataURL(f);
+}
+
+function showThumb(id,src,type){
+  const z=document.getElementById(id);
+  z.classList.add("has");
+  z.innerHTML='<input type="file" accept="image/*" onchange="handleUpload(this,\''+type+'\')"/>'
+    +'<img class="pimg" src="'+src+'"/>'
+    +'<div class="lbl" style="font-size:12px;color:var(--teal)">\u2713 Uploaded \u2014 click to change</div>';
+}
+
+function updateCaption(){
+  const c=document.getElementById("clientName").value.trim()||"[Client Name]";
+  const cap="Proud to welcome "+c+" to the TDM family! \uD83C\uDF89\n\n"
+    +"Partnerships like this one are what make this work so meaningful. "
+    +"I\u2019m genuinely excited about what we\u2019re going to build together \u2014 not just today, but well into the future.\n\n"
+    +"At TDM, we don\u2019t just work with clients \u2014 we invest in their success. "
+    +"Looking forward to every step of this journey with the "+c+" team.\n\n"
+    +"Here\u2019s to a long and impactful partnership! \uD83E\uDD1D\n\n"
+    +"#TDM #NewPartnership #ClientWin #Grateful #Growth";
+  document.getElementById("captionText").textContent=cap;
+}
+
+function rrp(ctx,x,y,w,h,r){
+  ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+}
+
+function wrap(ctx,txt,x,y,mw,lh){
+  const ws=txt.split(" ");let l="",ly=y;
+  for(let i=0;i<ws.length;i++){
+    const t=l+ws[i]+" ";
+    if(ctx.measureText(t).width>mw&&i>0){ctx.fillText(l.trim(),x,ly);l=ws[i]+" ";ly+=lh}
+    else l=t;
+  }
+  ctx.fillText(l.trim(),x,ly);
+}
+
+function draw(cv){
+  const S=cv.width,ctx=cv.getContext("2d"),sc=S/1200;
+  // Background
+  ctx.fillStyle="#f0f7f9";ctx.fillRect(0,0,S,S);
+  // Subtle diagonal lines
+  ctx.save();ctx.globalAlpha=.04;ctx.strokeStyle=T;ctx.lineWidth=sc;
+  for(let i=-S;i<S*2;i+=40*sc){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i+S,S);ctx.stroke()}
+  ctx.restore();
+  // Border
+  const bw=28*sc;
+  ctx.fillStyle=TD;
+  ctx.fillRect(0,0,S,bw);ctx.fillRect(0,S-bw,S,bw);
+  ctx.fillRect(0,0,bw,S);ctx.fillRect(S-bw,0,bw,S);
+  // Gold inner accent lines
+  const aw=5*sc,ao=bw+6*sc;
+  ctx.fillStyle=G;
+  ctx.fillRect(ao,ao,S-ao*2,aw);ctx.fillRect(ao,S-ao-aw,S-ao*2,aw);
+  ctx.fillRect(ao,ao,aw,S-ao*2);ctx.fillRect(S-ao-aw,ao,aw,S-ao*2);
+  // Corner gold dots
+  [[0,0],[S,0],[0,S],[S,S]].forEach(([cx,cy])=>{
+    ctx.save();ctx.fillStyle=G;ctx.translate(cx,cy);
+    ctx.beginPath();ctx.arc(0,0,14*sc,0,Math.PI*2);ctx.fill();ctx.restore();
+  });
+  // Top banner
+  const by=bw+16*sc,bh=90*sc;
+  const gr=ctx.createLinearGradient(bw,by,S-bw,by+bh);
+  gr.addColorStop(0,TD);gr.addColorStop(1,T);
+  ctx.fillStyle=gr;ctx.fillRect(bw,by,S-bw*2,bh);
+  ctx.fillStyle=W;ctx.font="900 "+Math.round(36*sc)+"px Inter,sans-serif";
+  ctx.textAlign="center";
+  ctx.fillText("\uD83C\uDF89  NEW PARTNER ANNOUNCEMENT",S/2,by+60*sc);
+  // Gold ribbon under banner
+  ctx.fillStyle=G;ctx.fillRect(bw,by+bh,S-bw*2,5*sc);
+  // "PROUD TO WELCOME" label
+  const ct=by+bh+20*sc;
+  ctx.fillStyle=T;ctx.font="700 "+Math.round(20*sc)+"px Inter,sans-serif";
+  ctx.textAlign="center";ctx.fillText("PROUD TO WELCOME",S/2,ct+44*sc);
+  // Client logo box
+  const ls=240*sc,lx=S/2-ls/2,ly2=ct+60*sc;
+  ctx.shadowColor="rgba(0,0,0,.10)";ctx.shadowBlur=20*sc;
+  ctx.fillStyle=W;ctx.beginPath();rrp(ctx,lx-12*sc,ly2-12*sc,ls+24*sc,ls+24*sc,16*sc);ctx.fill();
+  ctx.shadowBlur=0;
+  if(cImg){
+    ctx.save();ctx.beginPath();rrp(ctx,lx,ly2,ls,ls,12*sc);ctx.clip();
+    const ar=cImg.width/cImg.height;let dw=ls,dh=ls;
+    if(ar>1)dh=ls/ar;else dw=ls*ar;
+    ctx.drawImage(cImg,lx+(ls-dw)/2,ly2+(ls-dh)/2,dw,dh);ctx.restore();
+  } else {
+    ctx.fillStyle="#d4edf2";ctx.beginPath();rrp(ctx,lx,ly2,ls,ls,12*sc);ctx.fill();
+    ctx.font=Math.round(56*sc)+"px sans-serif";ctx.textAlign="center";
+    ctx.fillText("\uD83C\uDFE2",S/2,ly2+ls/2+20*sc);
+    ctx.fillStyle=T;ctx.font="600 "+Math.round(16*sc)+"px Inter,sans-serif";
+    ctx.fillText("Upload Client Logo",S/2,ly2+ls/2+58*sc);
+  }
+  // Client name
+  const cn=document.getElementById("clientName").value.trim()||"Your New Client";
+  ctx.fillStyle=DK;ctx.font="800 "+Math.round(42*sc)+"px Inter,sans-serif";
+  ctx.textAlign="center";
+  wrap(ctx,cn,S/2,ly2+ls+52*sc,S-120*sc,50*sc);
+  // Divider
+  ctx.fillStyle=TL;ctx.fillRect(S/2-50*sc,ly2+ls+118*sc,100*sc,2*sc);
+  // Rep strip
+  const rs=S-bw-148*sc;
+  ctx.fillStyle=TD;ctx.fillRect(bw,rs,S-bw*2,148*sc);
+  // Rep photo circle
+  const cr=48*sc,cx2=bw+68*sc,cy2=rs+74*sc;
+  ctx.save();ctx.beginPath();ctx.arc(cx2,cy2,cr,0,Math.PI*2);
+  ctx.fillStyle=W;ctx.fill();ctx.clip();
+  if(rImg){ctx.drawImage(rImg,cx2-cr,cy2-cr,cr*2,cr*2)}
+  else{
+    ctx.fillStyle="#d4edf2";ctx.fillRect(cx2-cr,cy2-cr,cr*2,cr*2);
+    ctx.fillStyle=T;ctx.font=Math.round(30*sc)+"px sans-serif";ctx.textAlign="center";
+    ctx.fillText("\uD83D\uDC64",cx2,cy2+10*sc);
+  }
+  ctx.restore();
+  // Gold ring
+  ctx.strokeStyle=G;ctx.lineWidth=3*sc;
+  ctx.beginPath();ctx.arc(cx2,cy2,cr+3*sc,0,Math.PI*2);ctx.stroke();
+  // Rep name & title
+  const rn=document.getElementById("repName").value.trim()||"Your Name";
+  const rt=document.getElementById("repTitle").value.trim()||"Account Executive";
+  ctx.fillStyle=W;ctx.textAlign="left";
+  ctx.font="700 "+Math.round(26*sc)+"px Inter,sans-serif";
+  ctx.fillText(rn,cx2+cr+20*sc,rs+56*sc);
+  ctx.fillStyle="rgba(255,255,255,.75)";
+  ctx.font="500 "+Math.round(18*sc)+"px Inter,sans-serif";
+  ctx.fillText(rt+" \u2022 TDM",cx2+cr+20*sc,rs+84*sc);
+  // TDM logo pill in strip
+  if(logo){
+    const lw=120*sc,lh2=lw*(logo.height/logo.width);
+    ctx.save();ctx.globalAlpha=.95;ctx.fillStyle=W;
+    ctx.beginPath();rrp(ctx,S-bw-lw-24*sc,rs+74*sc-lh2/2-8*sc,lw+16*sc,lh2+16*sc,8*sc);ctx.fill();
+    ctx.drawImage(logo,S-bw-lw-16*sc,rs+74*sc-lh2/2,lw,lh2);ctx.restore();
+  }
+}
+
+function updatePreview(){updateCaption();draw(document.getElementById("previewCanvas"))}
+
+function downloadGraphic(){
+  const cv=document.getElementById("exportCanvas");draw(cv);
+  const a=document.createElement("a");
+  const c=document.getElementById("clientName").value.trim().replace(/\s+/g,"-")||"new-client";
+  a.download="TDM-New-Partner-"+c+".png";
+  a.href=cv.toDataURL("image/png");a.click();
+  showToast("\u2705 Graphic downloaded!");
+}
+
+function copyCaption(){
+  navigator.clipboard.writeText(document.getElementById("captionText").textContent)
+    .then(()=>showToast("\uD83D\uDCCB Caption copied!"));
+}
+
+function postToLinkedIn(){
+  const t=document.getElementById("captionText").textContent;
+  const url=encodeURIComponent("https://tdm.cc");
+  const sum=encodeURIComponent(t.slice(0,700));
+  window.open("https://www.linkedin.com/sharing/share-offsite/?url="+url+"&summary="+sum,"_blank");
+  showToast("\uD83D\uDD17 Opening LinkedIn...");
+}
+
+function showToast(m){
+  const t=document.getElementById("toast");t.textContent=m;
+  t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2800);
+}
+
+updatePreview();
+</script>
+</body>
+</html>
