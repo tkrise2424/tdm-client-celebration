@@ -12,6 +12,7 @@
   --white:#fff;--g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;--g400:#94a3b8;
   --g600:#475569;--g800:#1e293b;--gold:#c9a84c;
 }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:"Inter",sans-serif;background:var(--g50);color:var(--g800);min-height:100vh}
 header{background:#fff;border-bottom:3px solid var(--teal);padding:18px 40px;display:flex;align-items:center;gap:16px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
 header img{height:44px}
@@ -25,7 +26,7 @@ header h1{font-size:18px;font-weight:700;color:var(--teal-dark)}
 .step{display:flex;align-items:center;gap:8px;padding:14px 20px;font-size:12px;font-weight:600;color:var(--teal);white-space:nowrap}
 .step .num{width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
 .sarr{color:var(--g400);padding:0 4px;line-height:48px}
-.main{display:grid;grid-template-columns:420px 1fr;gap:32px;max-width:1200px;margin:32px auto;padding:0 24px}
+.main{display:grid;grid-template-columns:420px 1fr;gap:32px;max-width:1260px;margin:32px auto;padding:0 24px}
 .fp{background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,.07);overflow:hidden}
 .fph{background:var(--teal);padding:18px 24px;color:#fff;font-weight:700;font-size:15px}
 .fb{padding:24px;display:flex;flex-direction:column;gap:20px}
@@ -59,7 +60,7 @@ header h1{font-size:18px;font-weight:700;color:var(--teal-dark)}
 .pch .badge{background:rgba(255,255,255,.2);padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
 .cw{padding:24px;display:flex;justify-content:center;background:var(--g100)}
 #previewCanvas{border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.15);max-width:100%}
-@media(max-width:900px){.main{grid-template-columns:1fr}header{padding:14px 20px}.hero{padding:24px 20px}}
+@media(max-width:960px){.main{grid-template-columns:1fr}header{padding:14px 20px}.hero{padding:24px 20px}}
 .toast{position:fixed;bottom:24px;right:24px;background:var(--teal-dark);color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;font-weight:600;box-shadow:0 4px 16px rgba(0,0,0,.2);opacity:0;transform:translateY(10px);transition:all .3s;z-index:1000}
 .toast.show{opacity:1;transform:translateY(0)}
 </style>
@@ -84,12 +85,10 @@ header h1{font-size:18px;font-weight:700;color:var(--teal-dark)}
 </div>
 
 <div class="main">
-  <!-- FORM -->
   <div class="fp">
     <div class="fph">&#9999;&#65039; Customize Your Graphic</div>
     <div class="fb">
       <div class="sdiv">Logos</div>
-
       <div class="fg">
         <label>Your Photo (Sales Rep)</label>
         <div class="uz" id="repZone">
@@ -99,7 +98,6 @@ header h1{font-size:18px;font-weight:700;color:var(--teal-dark)}
           <div class="hint">Recommended: Square, high-res</div>
         </div>
       </div>
-
       <div class="fg">
         <label>Client Logo or Photo</label>
         <div class="uz" id="clientZone">
@@ -109,17 +107,13 @@ header h1{font-size:18px;font-weight:700;color:var(--teal-dark)}
           <div class="hint">PNG with transparency works great</div>
         </div>
       </div>
-
       <div class="sdiv">Your Details</div>
       <div class="fg"><label>Your Full Name</label><input type="text" id="repName" placeholder="e.g. Sarah Johnson" oninput="updatePreview()"/></div>
       <div class="fg"><label>Your Title</label><input type="text" id="repTitle" placeholder="e.g. Account Executive" oninput="updatePreview()"/></div>
-
       <div class="sdiv">Client Details</div>
       <div class="fg"><label>Client Company Name</label><input type="text" id="clientName" placeholder="e.g. Acme Corporation" oninput="updatePreview()"/></div>
-
       <div class="sdiv">Actions</div>
       <button class="btn bp" onclick="downloadGraphic()">&#11015;&#65039; Download Graphic (1200&times;1200)</button>
-
       <div class="cbox">
         <div class="cbh">
           <span>LinkedIn Caption</span>
@@ -127,15 +121,12 @@ header h1{font-size:18px;font-weight:700;color:var(--teal-dark)}
         </div>
         <div id="captionText"></div>
       </div>
-
       <button class="btn bli" onclick="postToLinkedIn()">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         Post on LinkedIn
       </button>
     </div>
   </div>
-
-  <!-- PREVIEW -->
   <div class="pp">
     <div class="pc">
       <div class="pch">Live Preview <span class="badge">1200 &times; 1200 px</span></div>
@@ -147,15 +138,14 @@ header h1{font-size:18px;font-weight:700;color:var(--teal-dark)}
 <div class="toast" id="toast"></div>
 <canvas id="exportCanvas" width="1200" height="1200" style="display:none"></canvas>
 <script>
-const T="#41889a",TD="#2e6878",TL="#5ba8bc",W="#fff",G="#c9a84c",DK="#1e293b";
+const T="#41889a",TD="#2e6878",TL="#5ba8bc",W="#fff",G="#c9a84c",DK="#0f2233";
 let rImg=null,cImg=null,logo=null;
 
-// Pre-load TDM logo
 const logoEl=new Image();
 logoEl.crossOrigin="anonymous";
 logoEl.onload=()=>{logo=logoEl;draw(document.getElementById("previewCanvas"))};
 logoEl.onerror=()=>{draw(document.getElementById("previewCanvas"))};
-logoEl.src="https://web.parallellabs.app/platform-images/p/a19ba6a3-6c51-4133-bc4b-4727b76616df";
+logoEl.src="https://web.parallellabs.app/platform-images/p/35a6059a-fa92-44e6-835d-30b3f706f990";
 
 function handleUpload(inp,type){
   const f=inp.files[0];if(!f)return;
@@ -171,141 +161,224 @@ function handleUpload(inp,type){
   };
   r.readAsDataURL(f);
 }
-
 function showThumb(id,src,type){
-  const z=document.getElementById(id);
-  z.classList.add("has");
+  const z=document.getElementById(id);z.classList.add("has");
   z.innerHTML='<input type="file" accept="image/*" onchange="handleUpload(this,\''+type+'\')"/>'
     +'<img class="pimg" src="'+src+'"/>'
     +'<div class="lbl" style="font-size:12px;color:var(--teal)">\u2713 Uploaded \u2014 click to change</div>';
 }
-
 function updateCaption(){
   const c=document.getElementById("clientName").value.trim()||"[Client Name]";
-  const cap="Proud to welcome "+c+" to the TDM family! \uD83C\uDF89\n\n"
+  document.getElementById("captionText").textContent=
+    "Proud to welcome "+c+" to the TDM family! \uD83C\uDF89\n\n"
     +"Partnerships like this one are what make this work so meaningful. "
     +"I\u2019m genuinely excited about what we\u2019re going to build together \u2014 not just today, but well into the future.\n\n"
     +"At TDM, we don\u2019t just work with clients \u2014 we invest in their success. "
     +"Looking forward to every step of this journey with the "+c+" team.\n\n"
     +"Here\u2019s to a long and impactful partnership! \uD83E\uDD1D\n\n"
     +"#TDM #NewPartnership #ClientWin #Grateful #Growth";
-  document.getElementById("captionText").textContent=cap;
 }
 
+/* ── rounded rect path helper ── */
 function rrp(ctx,x,y,w,h,r){
   ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
   ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
   ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
   ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
 }
-
 function wrap(ctx,txt,x,y,mw,lh){
   const ws=txt.split(" ");let l="",ly=y;
   for(let i=0;i<ws.length;i++){
     const t=l+ws[i]+" ";
-    if(ctx.measureText(t).width>mw&&i>0){ctx.fillText(l.trim(),x,ly);l=ws[i]+" ";ly+=lh}
+    if(ctx.measureText(t).width>mw&&i>0){ctx.fillText(l.trim(),x,ly);l=ws[i]+" ";ly+=lh;}
     else l=t;
   }
   ctx.fillText(l.trim(),x,ly);
 }
 
+/* ── main draw function ── */
 function draw(cv){
-  const S=cv.width,ctx=cv.getContext("2d"),sc=S/1200;
-  // Background
-  ctx.fillStyle="#f0f7f9";ctx.fillRect(0,0,S,S);
-  // Subtle diagonal lines
-  ctx.save();ctx.globalAlpha=.04;ctx.strokeStyle=T;ctx.lineWidth=sc;
-  for(let i=-S;i<S*2;i+=40*sc){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i+S,S);ctx.stroke()}
+  const S=cv.width, ctx=cv.getContext("2d"), sc=S/1200;
+
+  // ── 1. DARK TECH BACKGROUND ──
+  // Deep navy-to-teal gradient base
+  const bgGrad=ctx.createLinearGradient(0,0,S,S);
+  bgGrad.addColorStop(0,"#0a1628");
+  bgGrad.addColorStop(0.5,"#0d2137");
+  bgGrad.addColorStop(1,"#0f2e3d");
+  ctx.fillStyle=bgGrad;
+  ctx.fillRect(0,0,S,S);
+
+  // Radial glow top-center (teal)
+  const glow1=ctx.createRadialGradient(S*0.5,0,0,S*0.5,0,S*0.75);
+  glow1.addColorStop(0,"rgba(65,136,154,0.28)");
+  glow1.addColorStop(1,"rgba(65,136,154,0)");
+  ctx.fillStyle=glow1;ctx.fillRect(0,0,S,S);
+
+  // Radial glow bottom-right (gold accent)
+  const glow2=ctx.createRadialGradient(S*0.85,S*0.9,0,S*0.85,S*0.9,S*0.55);
+  glow2.addColorStop(0,"rgba(201,168,76,0.12)");
+  glow2.addColorStop(1,"rgba(201,168,76,0)");
+  ctx.fillStyle=glow2;ctx.fillRect(0,0,S,S);
+
+  // ── 2. CIRCUIT / GRID LINES ──
+  ctx.save();
+  ctx.strokeStyle="rgba(65,136,154,0.13)";
+  ctx.lineWidth=sc;
+  // horizontal lines
+  for(let y=0;y<S;y+=60*sc){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(S,y);ctx.stroke();}
+  // vertical lines
+  for(let x=0;x<S;x+=60*sc){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,S);ctx.stroke();}
   ctx.restore();
-  // Border
-  const bw=28*sc;
-  ctx.fillStyle=TD;
-  ctx.fillRect(0,0,S,bw);ctx.fillRect(0,S-bw,S,bw);
-  ctx.fillRect(0,0,bw,S);ctx.fillRect(S-bw,0,bw,S);
-  // Gold inner accent lines
-  const aw=5*sc,ao=bw+6*sc;
+
+  // Circuit node dots at intersections (sparse)
+  ctx.save();
+  ctx.fillStyle="rgba(65,136,154,0.22)";
+  for(let y=0;y<S;y+=120*sc){
+    for(let x=0;x<S;x+=120*sc){
+      ctx.beginPath();ctx.arc(x,y,2.5*sc,0,Math.PI*2);ctx.fill();
+    }
+  }
+  ctx.restore();
+
+  // ── 3. DIAGONAL ACCENT LINES (subtle) ──
+  ctx.save();
+  ctx.strokeStyle="rgba(65,136,154,0.06)";
+  ctx.lineWidth=1.5*sc;
+  for(let i=-S;i<S*2;i+=80*sc){
+    ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i+S,S);ctx.stroke();
+  }
+  ctx.restore();
+
+  // ── 4. TOP HEADER BAND ──
+  const hh=110*sc; // header height
+  const hGrad=ctx.createLinearGradient(0,0,S,hh);
+  hGrad.addColorStop(0,TD);
+  hGrad.addColorStop(1,T);
+  ctx.fillStyle=hGrad;
+  ctx.fillRect(0,0,S,hh);
+
+  // Gold accent line under header
   ctx.fillStyle=G;
-  ctx.fillRect(ao,ao,S-ao*2,aw);ctx.fillRect(ao,S-ao-aw,S-ao*2,aw);
-  ctx.fillRect(ao,ao,aw,S-ao*2);ctx.fillRect(S-ao-aw,ao,aw,S-ao*2);
-  // Corner gold dots
-  [[0,0],[S,0],[0,S],[S,S]].forEach(([cx,cy])=>{
-    ctx.save();ctx.fillStyle=G;ctx.translate(cx,cy);
-    ctx.beginPath();ctx.arc(0,0,14*sc,0,Math.PI*2);ctx.fill();ctx.restore();
-  });
-  // Top banner
-  const by=bw+16*sc,bh=90*sc;
-  const gr=ctx.createLinearGradient(bw,by,S-bw,by+bh);
-  gr.addColorStop(0,TD);gr.addColorStop(1,T);
-  ctx.fillStyle=gr;ctx.fillRect(bw,by,S-bw*2,bh);
-  ctx.fillStyle=W;ctx.font="900 "+Math.round(36*sc)+"px Inter,sans-serif";
+  ctx.fillRect(0,hh,S,4*sc);
+
+  // "NEW PARTNER ANNOUNCEMENT" text
+  ctx.fillStyle=W;
+  ctx.font="900 "+Math.round(38*sc)+"px Inter,sans-serif";
   ctx.textAlign="center";
-  ctx.fillText("\uD83C\uDF89  NEW PARTNER ANNOUNCEMENT",S/2,by+60*sc);
-  // Gold ribbon under banner
-  ctx.fillStyle=G;ctx.fillRect(bw,by+bh,S-bw*2,5*sc);
-  // "PROUD TO WELCOME" label
-  const ct=by+bh+20*sc;
-  ctx.fillStyle=T;ctx.font="700 "+Math.round(20*sc)+"px Inter,sans-serif";
-  ctx.textAlign="center";ctx.fillText("PROUD TO WELCOME",S/2,ct+44*sc);
-  // Client logo box
-  const ls=240*sc,lx=S/2-ls/2,ly2=ct+60*sc;
-  ctx.shadowColor="rgba(0,0,0,.10)";ctx.shadowBlur=20*sc;
-  ctx.fillStyle=W;ctx.beginPath();rrp(ctx,lx-12*sc,ly2-12*sc,ls+24*sc,ls+24*sc,16*sc);ctx.fill();
-  ctx.shadowBlur=0;
+  ctx.fillText("\uD83C\uDF89  NEW PARTNER ANNOUNCEMENT",S/2,hh*0.65);
+
+  // ── 5. "PROUD TO WELCOME" label ──
+  const labelY=hh+52*sc;
+  ctx.fillStyle="rgba(255,255,255,0.55)";
+  ctx.font="700 "+Math.round(18*sc)+"px Inter,sans-serif";
+  ctx.textAlign="center";
+  ctx.letterSpacing="0.12em";
+  ctx.fillText("PROUD TO WELCOME",S/2,labelY);
+  ctx.letterSpacing="0";
+
+  // ── 6. CLIENT LOGO — large, centered ──
+  const logoSize=360*sc;
+  const logoX=S/2-logoSize/2;
+  const logoY=labelY+28*sc;
+
+  // Glassy card behind client logo
+  ctx.save();
+  ctx.shadowColor="rgba(0,0,0,0.5)";
+  ctx.shadowBlur=40*sc;
+  ctx.fillStyle="rgba(255,255,255,0.07)";
+  ctx.beginPath();rrp(ctx,logoX-16*sc,logoY-16*sc,logoSize+32*sc,logoSize+32*sc,20*sc);ctx.fill();
+  ctx.restore();
+
+  // Subtle border on card
+  ctx.save();
+  ctx.strokeStyle="rgba(65,136,154,0.35)";
+  ctx.lineWidth=1.5*sc;
+  ctx.beginPath();rrp(ctx,logoX-16*sc,logoY-16*sc,logoSize+32*sc,logoSize+32*sc,20*sc);ctx.stroke();
+  ctx.restore();
+
   if(cImg){
-    ctx.save();ctx.beginPath();rrp(ctx,lx,ly2,ls,ls,12*sc);ctx.clip();
-    const ar=cImg.width/cImg.height;let dw=ls,dh=ls;
-    if(ar>1)dh=ls/ar;else dw=ls*ar;
-    ctx.drawImage(cImg,lx+(ls-dw)/2,ly2+(ls-dh)/2,dw,dh);ctx.restore();
+    ctx.save();
+    ctx.beginPath();rrp(ctx,logoX,logoY,logoSize,logoSize,14*sc);ctx.clip();
+    const ar=cImg.width/cImg.height;
+    let dw=logoSize,dh=logoSize;
+    if(ar>1)dh=logoSize/ar;else dw=logoSize*ar;
+    ctx.drawImage(cImg,logoX+(logoSize-dw)/2,logoY+(logoSize-dh)/2,dw,dh);
+    ctx.restore();
   } else {
-    ctx.fillStyle="#d4edf2";ctx.beginPath();rrp(ctx,lx,ly2,ls,ls,12*sc);ctx.fill();
-    ctx.font=Math.round(56*sc)+"px sans-serif";ctx.textAlign="center";
-    ctx.fillText("\uD83C\uDFE2",S/2,ly2+ls/2+20*sc);
-    ctx.fillStyle=T;ctx.font="600 "+Math.round(16*sc)+"px Inter,sans-serif";
-    ctx.fillText("Upload Client Logo",S/2,ly2+ls/2+58*sc);
+    // Placeholder
+    ctx.save();
+    ctx.beginPath();rrp(ctx,logoX,logoY,logoSize,logoSize,14*sc);ctx.clip();
+    ctx.fillStyle="rgba(255,255,255,0.04)";ctx.fillRect(logoX,logoY,logoSize,logoSize);
+    ctx.restore();
+    ctx.font=Math.round(72*sc)+"px sans-serif";ctx.textAlign="center";
+    ctx.fillText("\uD83C\uDFE2",S/2,logoY+logoSize/2+24*sc);
+    ctx.fillStyle="rgba(255,255,255,0.4)";
+    ctx.font="600 "+Math.round(18*sc)+"px Inter,sans-serif";
+    ctx.fillText("Upload Client Logo",S/2,logoY+logoSize/2+72*sc);
   }
-  // Client name
+
+  // ── 7. CLIENT NAME ──
   const cn=document.getElementById("clientName").value.trim()||"Your New Client";
-  ctx.fillStyle=DK;ctx.font="800 "+Math.round(42*sc)+"px Inter,sans-serif";
+  ctx.fillStyle=W;
+  ctx.font="800 "+Math.round(52*sc)+"px Inter,sans-serif";
   ctx.textAlign="center";
-  wrap(ctx,cn,S/2,ly2+ls+52*sc,S-120*sc,50*sc);
-  // Divider
-  ctx.fillStyle=TL;ctx.fillRect(S/2-50*sc,ly2+ls+118*sc,100*sc,2*sc);
-  // Rep strip
-  const rs=S-bw-148*sc;
-  ctx.fillStyle=TD;ctx.fillRect(bw,rs,S-bw*2,148*sc);
+  wrap(ctx,cn,S/2,logoY+logoSize+68*sc,S-100*sc,60*sc);
+
+  // ── 8. BOTTOM REP STRIP ──
+  const stripH=160*sc;
+  const stripY=S-stripH;
+
+  // Frosted dark strip
+  const stripGrad=ctx.createLinearGradient(0,stripY,0,S);
+  stripGrad.addColorStop(0,"rgba(14,32,52,0.92)");
+  stripGrad.addColorStop(1,"rgba(10,22,40,0.98)");
+  ctx.fillStyle=stripGrad;
+  ctx.fillRect(0,stripY,S,stripH);
+
+  // Gold top line on strip
+  ctx.fillStyle=G;
+  ctx.fillRect(0,stripY,S,3*sc);
+
   // Rep photo circle
-  const cr=48*sc,cx2=bw+68*sc,cy2=rs+74*sc;
-  ctx.save();ctx.beginPath();ctx.arc(cx2,cy2,cr,0,Math.PI*2);
-  ctx.fillStyle=W;ctx.fill();ctx.clip();
-  if(rImg){ctx.drawImage(rImg,cx2-cr,cy2-cr,cr*2,cr*2)}
-  else{
-    ctx.fillStyle="#d4edf2";ctx.fillRect(cx2-cr,cy2-cr,cr*2,cr*2);
-    ctx.fillStyle=T;ctx.font=Math.round(30*sc)+"px sans-serif";ctx.textAlign="center";
-    ctx.fillText("\uD83D\uDC64",cx2,cy2+10*sc);
+  const cr=52*sc, cx2=80*sc+cr, cy2=stripY+stripH/2;
+  ctx.save();
+  ctx.beginPath();ctx.arc(cx2,cy2,cr,0,Math.PI*2);
+  ctx.fillStyle="rgba(255,255,255,0.1)";ctx.fill();ctx.clip();
+  if(rImg){
+    ctx.drawImage(rImg,cx2-cr,cy2-cr,cr*2,cr*2);
+  } else {
+    ctx.fillStyle="rgba(65,136,154,0.3)";ctx.fillRect(cx2-cr,cy2-cr,cr*2,cr*2);
+    ctx.fillStyle="rgba(255,255,255,0.5)";
+    ctx.font=Math.round(36*sc)+"px sans-serif";ctx.textAlign="center";
+    ctx.fillText("\uD83D\uDC64",cx2,cy2+12*sc);
   }
   ctx.restore();
-  // Gold ring
-  ctx.strokeStyle=G;ctx.lineWidth=3*sc;
+  // Teal ring
+  ctx.strokeStyle=T;ctx.lineWidth=3*sc;
   ctx.beginPath();ctx.arc(cx2,cy2,cr+3*sc,0,Math.PI*2);ctx.stroke();
-  // Rep name & title
+
+  // Rep name + title
   const rn=document.getElementById("repName").value.trim()||"Your Name";
   const rt=document.getElementById("repTitle").value.trim()||"Account Executive";
   ctx.fillStyle=W;ctx.textAlign="left";
-  ctx.font="700 "+Math.round(26*sc)+"px Inter,sans-serif";
-  ctx.fillText(rn,cx2+cr+20*sc,rs+56*sc);
-  ctx.fillStyle="rgba(255,255,255,.75)";
-  ctx.font="500 "+Math.round(18*sc)+"px Inter,sans-serif";
-  ctx.fillText(rt+" \u2022 TDM",cx2+cr+20*sc,rs+84*sc);
-  // TDM logo pill in strip
+  ctx.font="700 "+Math.round(30*sc)+"px Inter,sans-serif";
+  ctx.fillText(rn,cx2+cr+24*sc,stripY+stripH/2-10*sc);
+  ctx.fillStyle="rgba(255,255,255,0.6)";
+  ctx.font="500 "+Math.round(20*sc)+"px Inter,sans-serif";
+  ctx.fillText(rt+" \u2022 TDM",cx2+cr+24*sc,stripY+stripH/2+22*sc);
+
+  // ── 9. TDM LOGO bottom-right ──
   if(logo){
-    const lw=120*sc,lh2=lw*(logo.height/logo.width);
-    ctx.save();ctx.globalAlpha=.95;ctx.fillStyle=W;
-    ctx.beginPath();rrp(ctx,S-bw-lw-24*sc,rs+74*sc-lh2/2-8*sc,lw+16*sc,lh2+16*sc,8*sc);ctx.fill();
-    ctx.drawImage(logo,S-bw-lw-16*sc,rs+74*sc-lh2/2,lw,lh2);ctx.restore();
+    const lw=160*sc, lh2=lw*(logo.height/logo.width);
+    const lx=S-lw-32*sc, ly3=stripY+stripH/2-lh2/2;
+    ctx.save();ctx.globalAlpha=0.92;
+    ctx.drawImage(logo,lx,ly3,lw,lh2);
+    ctx.restore();
   }
 }
 
-function updatePreview(){updateCaption();draw(document.getElementById("previewCanvas"))}
+function updatePreview(){updateCaption();draw(document.getElementById("previewCanvas"));}
 
 function downloadGraphic(){
   const cv=document.getElementById("exportCanvas");draw(cv);
@@ -315,20 +388,15 @@ function downloadGraphic(){
   a.href=cv.toDataURL("image/png");a.click();
   showToast("\u2705 Graphic downloaded!");
 }
-
 function copyCaption(){
   navigator.clipboard.writeText(document.getElementById("captionText").textContent)
     .then(()=>showToast("\uD83D\uDCCB Caption copied!"));
 }
-
 function postToLinkedIn(){
   const t=document.getElementById("captionText").textContent;
-  const url=encodeURIComponent("https://tdm.cc");
-  const sum=encodeURIComponent(t.slice(0,700));
-  window.open("https://www.linkedin.com/sharing/share-offsite/?url="+url+"&summary="+sum,"_blank");
+  window.open("https://www.linkedin.com/sharing/share-offsite/?url="+encodeURIComponent("https://tdm.cc")+"&summary="+encodeURIComponent(t.slice(0,700)),"_blank");
   showToast("\uD83D\uDD17 Opening LinkedIn...");
 }
-
 function showToast(m){
   const t=document.getElementById("toast");t.textContent=m;
   t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2800);
