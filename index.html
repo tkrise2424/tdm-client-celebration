@@ -190,94 +190,38 @@ function wrap(ctx,txt,x,y,mw,lh){
 function draw(cv){
   const S=cv.width, ctx=cv.getContext("2d"), sc=S/1200;
 
-  /* 1. Background image — fill full canvas */
+  /* 1. Background image */
   if(bgImg.complete&&bgImg.naturalWidth>0){
     ctx.drawImage(bgImg,0,0,S,S);
   } else {
-    /* fallback dark bg while image loads */
     ctx.fillStyle="#0a1628";ctx.fillRect(0,0,S,S);
   }
 
-  /* 2. Subtle dark overlay so text always reads clearly */
+  /* 2. Subtle dark overlay */
   ctx.fillStyle="rgba(0,0,0,0.30)";
   ctx.fillRect(0,0,S,S);
 
-  /* 3. "NEW PARTNER ANNOUNCEMENT" banner at top */
+  /* 3. Header banner — top */
   const bannerH=100*sc;
-  const bg2=ctx.createLinearGradient(0,0,0,bannerH);
-  bg2.addColorStop(0,"rgba(0,0,0,0.70)");
+  const bg2=ctx.createLinearGradient(0,0,0,bannerH*1.8);
+  bg2.addColorStop(0,"rgba(0,0,0,0.72)");
   bg2.addColorStop(1,"rgba(0,0,0,0.0)");
-  ctx.fillStyle=bg2;ctx.fillRect(0,0,S,bannerH*1.6);
+  ctx.fillStyle=bg2;ctx.fillRect(0,0,S,bannerH*1.8);
 
   ctx.fillStyle=W;
   ctx.font="900 "+Math.round(40*sc)+"px Inter,sans-serif";
   ctx.textAlign="center";
-  ctx.fillText("\uD83C\uDF89  NEW PARTNER ANNOUNCEMENT",S/2,68*sc);
+  ctx.fillText("NEW PARTNER ANNOUNCEMENT",S/2,68*sc);
 
-  /* Gold underline accent */
   ctx.fillStyle=G;
   ctx.fillRect(S/2-120*sc,82*sc,240*sc,3.5*sc);
 
-  /* 4. "PROUD TO WELCOME" */
-  ctx.fillStyle="rgba(255,255,255,0.75)";
-  ctx.font="700 "+Math.round(19*sc)+"px Inter,sans-serif";
-  ctx.textAlign="center";
-  ctx.fillText("PROUD TO WELCOME",S/2,130*sc);
-
-  /* 5. Client logo — large, centered */
-  const ls=360*sc, lx=S/2-ls/2, ly=150*sc;
-
-  if(cImg){
-    /* White card behind logo */
-    ctx.save();
-    ctx.shadowColor="rgba(0,0,0,0.45)";ctx.shadowBlur=30*sc;
-    ctx.fillStyle="rgba(255,255,255,0.92)";
-    ctx.beginPath();rrp(ctx,lx-14*sc,ly-14*sc,ls+28*sc,ls+28*sc,18*sc);ctx.fill();
-    ctx.restore();
-    /* Logo image clipped */
-    ctx.save();
-    ctx.beginPath();rrp(ctx,lx,ly,ls,ls,14*sc);ctx.clip();
-    const ar=cImg.width/cImg.height;
-    let dw=ls,dh=ls;
-    if(ar>1)dh=ls/ar;else dw=ls*ar;
-    ctx.drawImage(cImg,lx+(ls-dw)/2,ly+(ls-dh)/2,dw,dh);
-    ctx.restore();
-  } else {
-    /* Placeholder */
-    ctx.save();
-    ctx.shadowColor="rgba(0,0,0,0.35)";ctx.shadowBlur=20*sc;
-    ctx.fillStyle="rgba(255,255,255,0.12)";
-    ctx.beginPath();rrp(ctx,lx,ly,ls,ls,14*sc);ctx.fill();
-    ctx.restore();
-    ctx.save();ctx.strokeStyle="rgba(255,255,255,0.30)";ctx.lineWidth=2*sc;
-    ctx.beginPath();rrp(ctx,lx,ly,ls,ls,14*sc);ctx.stroke();ctx.restore();
-    ctx.font=Math.round(80*sc)+"px sans-serif";ctx.textAlign="center";
-    ctx.fillText("\uD83C\uDFE2",S/2,ly+ls/2+28*sc);
-    ctx.fillStyle="rgba(255,255,255,0.45)";
-    ctx.font="600 "+Math.round(18*sc)+"px Inter,sans-serif";
-    ctx.fillText("Upload Client Logo",S/2,ly+ls/2+80*sc);
-  }
-
-  /* 6. Client name */
-  const cn=document.getElementById("clientName").value.trim()||"Your New Client";
-  /* Text shadow for legibility */
-  ctx.save();
-  ctx.shadowColor="rgba(0,0,0,0.8)";ctx.shadowBlur=12*sc;
-  ctx.fillStyle=W;
-  ctx.font="800 "+Math.round(52*sc)+"px Inter,sans-serif";
-  ctx.textAlign="center";
-  const nameY=ly+ls+72*sc;
-  wrap(ctx,cn,S/2,nameY,S-80*sc,60*sc);
-  ctx.restore();
-
-  /* 7. Bottom rep strip — frosted dark band */
+  /* 4. Bottom rep strip */
   const stripH=160*sc, stripY=S-stripH;
   const sg=ctx.createLinearGradient(0,stripY,0,S);
   sg.addColorStop(0,"rgba(10,22,40,0.88)");
   sg.addColorStop(1,"rgba(6,14,28,0.97)");
   ctx.fillStyle=sg;ctx.fillRect(0,stripY,S,stripH);
-
-  /* Gold top line */
   ctx.fillStyle=G;ctx.fillRect(0,stripY,S,3.5*sc);
 
   /* Rep photo circle */
@@ -295,11 +239,9 @@ function draw(cv){
     ctx.fillText("\uD83D\uDC64",cx,cy+14*sc);
   }
   ctx.restore();
-  /* Teal ring */
   ctx.strokeStyle=T;ctx.lineWidth=3.5*sc;
   ctx.beginPath();ctx.arc(cx,cy,cr+4*sc,0,Math.PI*2);ctx.stroke();
 
-  /* Rep name & title */
   const rn=document.getElementById("repName").value.trim()||"Your Name";
   const rt=document.getElementById("repTitle").value.trim()||"Account Executive";
   ctx.fillStyle=W;ctx.textAlign="left";
@@ -308,6 +250,66 @@ function draw(cv){
   ctx.fillStyle="rgba(255,255,255,0.60)";
   ctx.font="500 "+Math.round(20*sc)+"px Inter,sans-serif";
   ctx.fillText(rt+" \u2022 TDM",cx+cr+24*sc,stripY+stripH/2+26*sc);
+
+  /* 5. CENTER ZONE — "Proud to welcome" + logo + client name
+        Available vertical space: bannerH to stripY
+        We stack: label (30) + gap (20) + logo (ls) + gap (24) + name (~60)
+        Total content height ≈ 30+20+ls+24+60 = ls+134
+        Center that in the available zone. */
+  const zoneTop=bannerH+10*sc;
+  const zoneBot=stripY-10*sc;
+  const zoneH=zoneBot-zoneTop;
+  const ls=300*sc;
+  const labelH=30*sc, nameH=60*sc, gap1=18*sc, gap2=22*sc;
+  const blockH=labelH+gap1+ls+gap2+nameH;
+  const blockTop=zoneTop+(zoneH-blockH)/2;
+
+  /* "PROUD TO WELCOME" label */
+  const labelY=blockTop+labelH;
+  ctx.fillStyle="rgba(255,255,255,0.80)";
+  ctx.font="700 "+Math.round(22*sc)+"px Inter,sans-serif";
+  ctx.textAlign="center";
+  ctx.fillText("PROUD TO WELCOME",S/2,labelY);
+
+  /* Client logo box */
+  const lx=S/2-ls/2, ly=blockTop+labelH+gap1;
+  if(cImg){
+    ctx.save();
+    ctx.shadowColor="rgba(0,0,0,0.45)";ctx.shadowBlur=30*sc;
+    ctx.fillStyle="rgba(255,255,255,0.92)";
+    ctx.beginPath();rrp(ctx,lx-14*sc,ly-14*sc,ls+28*sc,ls+28*sc,18*sc);ctx.fill();
+    ctx.restore();
+    ctx.save();
+    ctx.beginPath();rrp(ctx,lx,ly,ls,ls,14*sc);ctx.clip();
+    const ar=cImg.width/cImg.height;
+    let dw=ls,dh=ls;
+    if(ar>1)dh=ls/ar;else dw=ls*ar;
+    ctx.drawImage(cImg,lx+(ls-dw)/2,ly+(ls-dh)/2,dw,dh);
+    ctx.restore();
+  } else {
+    ctx.save();
+    ctx.shadowColor="rgba(0,0,0,0.35)";ctx.shadowBlur=20*sc;
+    ctx.fillStyle="rgba(255,255,255,0.10)";
+    ctx.beginPath();rrp(ctx,lx,ly,ls,ls,14*sc);ctx.fill();
+    ctx.restore();
+    ctx.save();ctx.strokeStyle="rgba(255,255,255,0.30)";ctx.lineWidth=2*sc;
+    ctx.beginPath();rrp(ctx,lx,ly,ls,ls,14*sc);ctx.stroke();ctx.restore();
+    ctx.font=Math.round(72*sc)+"px sans-serif";ctx.textAlign="center";
+    ctx.fillText("\uD83C\uDFE2",S/2,ly+ls/2+24*sc);
+    ctx.fillStyle="rgba(255,255,255,0.40)";
+    ctx.font="600 "+Math.round(18*sc)+"px Inter,sans-serif";
+    ctx.fillText("Upload Client Logo",S/2,ly+ls/2+72*sc);
+  }
+
+  /* Client name */
+  const cn=document.getElementById("clientName").value.trim()||"Your New Client";
+  ctx.save();
+  ctx.shadowColor="rgba(0,0,0,0.85)";ctx.shadowBlur=14*sc;
+  ctx.fillStyle=W;
+  ctx.font="800 "+Math.round(50*sc)+"px Inter,sans-serif";
+  ctx.textAlign="center";
+  wrap(ctx,cn,S/2,ly+ls+gap2+nameH*0.75,S-80*sc,58*sc);
+  ctx.restore();
 }
 
 function updatePreview(){updateCaption();draw(document.getElementById("previewCanvas"));}
