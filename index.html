@@ -327,11 +327,18 @@ function copyCaption(){
     .then(()=>showToast("\uD83D\uDCCB Caption copied!"));
 }
 function postToLinkedIn(){
+  const cv=document.getElementById("exportCanvas");draw(cv);
+  const a=document.createElement("a");
+  const c=document.getElementById("clientName").value.trim().replace(/\s+/g,"-")||"new-client";
+  a.download="TDM-New-Partner-"+c+".png";
+  a.href=cv.toDataURL("image/png");a.click();
   const caption=document.getElementById("captionText").textContent;
   navigator.clipboard.writeText(caption).then(()=>{
-    showToast("\uD83D\uDCCB Caption copied! Paste into your LinkedIn post.");
-    setTimeout(()=>window.open("https://www.linkedin.com/feed/?shareActive=true","_blank"),400);
-  }).catch(()=>window.open("https://www.linkedin.com/feed/?shareActive=true","_blank"));
+    showToast("\uD83D\uDEBC Image downloaded & caption copied! Paste both into LinkedIn.");
+  }).catch(()=>{
+    showToast("\uD83D\uDEBC Image downloaded! Copy the caption above and paste into LinkedIn.");
+  });
+  setTimeout(()=>window.open("https://www.linkedin.com/feed/?shareActive=true","_blank"),800);
 }
 function showToast(m){
   const t=document.getElementById("toast");t.textContent=m;
